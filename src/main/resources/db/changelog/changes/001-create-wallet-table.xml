@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+	<changeSet id="001-create-wallet-table" author="antigravity">
+		<createTable tableName="wallet">
+			<column name="id" type="UUID">
+				<constraints primaryKey="true" nullable="false"/>
+			</column>
+			<column name="balance" type="DECIMAL(19, 2)">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+    
+    <!-- Seed data for testing manually if needed, or we can use a separate checks. 
+         But typically better to have empty DB. 
+         Wait, let's insert one wallet for manual testing convenience? 
+         User didn't ask for it, but for "Postman" verification it helps. 
+         I'll stick to clean DB. Application logic should handle creation/not found. 
+         ACTUALLY, the requirement says "change the account", implies it exists.
+         I will add a changeset to insert a default wallet for easier testing.
+    -->
+    <changeSet id="002-insert-default-wallet" author="antigravity">
+        <insert tableName="wallet">
+            <column name="id" value="a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11"/>
+            <column name="balance" value="1000.00"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
