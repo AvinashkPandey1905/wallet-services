@@ -2,7 +2,7 @@
 
 A high-performance implementation of a Wallet Service backend using Java 17, Spring Boot 3, and PostgreSQL. Designed to handle **1000 RPS per wallet** with strict data consistency using pessimistic locking.
 
-## 🚀 Features
+## Features
 
 *   **Robust Money Transfer**: Supports `DEPOSIT` and `WITHDRAW` operations.
 *   **High Concurrency**: Handles 1000+ Requests Per Second (RPS) per wallet without race conditions (`PESSIMISTIC_WRITE` locking).
@@ -10,7 +10,7 @@ A high-performance implementation of a Wallet Service backend using Java 17, Spr
 *   **Containerized**: Fully Dockerized (App + PostgreSQL) for easy deployment.
 *   **Database Migrations**: Liquibase managed schema.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 *   **Language**: Java 17
 *   **Framework**: Spring Boot 3
@@ -19,7 +19,7 @@ A high-performance implementation of a Wallet Service backend using Java 17, Spr
 *   **Migrations**: Liquibase
 *   **Testing**: JUnit 5, MockMvc, H2 (In-Memory)
 
-## 🏁 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -40,7 +40,7 @@ A high-performance implementation of a Wallet Service backend using Java 17, Spr
 
 The application will be available at **`http://localhost:8081`**.
 
-## 🔌 API Reference
+## API Reference
 
 **Base URL**: `http://localhost:8081/api/v1`
 
@@ -80,7 +80,7 @@ The application will be available at **`http://localhost:8081`**.
     curl http://localhost:8081/api/v1/wallets/a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11
     ```
 
-## 🧪 Testing
+## Testing
 
 Run integration and concurrency tests:
 
@@ -93,10 +93,10 @@ Includes `WalletIntegrationTest` which verifies:
 *   **Concurrency**: 100 threads hitting the same wallet simultaneously.
 *   **Error Handling**: Validates `400`, `404`, and `429` (Too Many Requests) responses.
 
-## 🏗️ Architecture Highlights
+## Architecture Highlights
 
 *   **Pessimistic Locking**: Uses `SELECT ... FOR UPDATE` via JPA `@Lock(LockModeType.PESSIMISTIC_WRITE)` to serialize access to wallet rows during modification. This prevents lost updates.
-*   **Connection Pooling**: HikariCP configured with appropriate timeouts and pool size to handle burst traffic.
+*   **Connection Pooling**: HikariCP is configured with appropriate timeouts and pool size to handle burst traffic.
 *   **Error Handling**:
     *   `405 Method Not Allowed`: For using GET on POST-only endpoints.
     *   `429 Too Many Requests`: If database lock acquisition fails under extreme load.
