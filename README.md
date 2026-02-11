@@ -1,6 +1,6 @@
 # Wallet Service
 
-A high-performance implementation of a Wallet Service backend using Java 17, Spring Boot 3, and PostgreSQL. Designed to handle **1000 RPS per wallet** with strict data consistency using pessimistic locking.
+A high-performance implementation of a Wallet Service backend using Java 17, Spring Boot 3.5, and PostgreSQL. Designed to handle **1000 RPS per wallet** with strict data consistency using pessimistic locking.
 
 ## Features
 
